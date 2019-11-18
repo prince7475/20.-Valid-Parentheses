@@ -1,0 +1,74 @@
+Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Note that an empty string is also considered valid.
+
+Example 1:
+
+Input: "()"
+Output: true
+Example 2:
+
+Input: "()[]{}"
+Output: true
+Example 3:
+
+Input: "(]"
+Output: false
+Example 4:
+
+Input: "([)]"
+Output: false
+Example 5:
+
+Input: "{[]}"
+Output: true
+
+
+function isValid(s){
+  let begMap = {
+  "(" : ")",
+  "{" : "}",
+  "[" : "]"
+  }
+  
+  let endMap = {
+    ")" : true,
+    "}": true,
+    "]": true
+  }
+  
+  let stack = []
+  
+  for(let el of s){
+    if(begMap[el]){
+      stack.push(begMap[el])
+    }else {
+    let lastPushed = stack.pop()
+    if(lastPushed !== el) return false
+    }
+  }
+  return stack.length === 0
+}
+
+// Have a hashmap --> { : }
+// Have a stack to hold all ending parentheses
+// have another hashMap that determine if it is a end or begining
+
+// Loop through string
+// If it is a begining of a parentheses we will push the end parentheses in the stack
+for(let el of s){
+  if(begMap[el]){
+    stack.push(begMag[el])
+  }else {
+    let lastPushed = stack.pop()
+    if(el !== lastPushed) {
+      return false
+    }
+  }
+  
+  return stack.length === 0
+}
